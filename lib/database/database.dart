@@ -8,12 +8,14 @@ class User {
   String regId;
   String entryTime;
   String exitTime;
+  String isCheckedIn;
 
   static const Map<String, String> defMap = {
     'name': 'ResponseError',
     'regId': 'ResponseError',
     'entryTime': 'ResponseError',
     'exitTime': 'ResponseError',
+    'isCheckedIn': 'ResponseError',
   };
 
   User({
@@ -21,6 +23,7 @@ class User {
     required this.regId,
     required this.entryTime,
     required this.exitTime,
+    required this.isCheckedIn,
   });
 
   Map<String, String> toMap() {
@@ -29,6 +32,7 @@ class User {
       'regId': regId,
       'entryTime': entryTime,
       'exitTime': exitTime,
+      'isCheckedIn': isCheckedIn,
     };
   }
 
@@ -36,9 +40,11 @@ class User {
       : name = (map ?? defMap)['name'] ?? 'NullFieldError',
         regId = (map ?? defMap)['regId'] ?? 'NullFieldError',
         entryTime = (map ?? defMap)['entryTime'] ?? 'NullFieldError',
-        exitTime = (map ?? defMap)['exitTime'] ?? 'NullFieldError';
+        exitTime = (map ?? defMap)['exitTime'] ?? 'NullFieldError',
+        isCheckedIn = (map ?? defMap)['isCheckedIn'] ?? 'NullFieldError';
 
-  void displayData() => debugPrint('debug: $name $regId $entryTime $exitTime');
+  void displayData() =>
+      debugPrint('debug: $name $regId $entryTime $exitTime $isCheckedIn');
 }
 
 class MongoDatabase {
@@ -49,7 +55,7 @@ class MongoDatabase {
   static connect() async {
     db = await Db.create(dbStr);
     await db.open();
-    userCollection = db.collection('eventTicket');
+    userCollection = db.collection(s_userCollection);
   }
 
   static insert(User user) async =>
@@ -64,15 +70,26 @@ class MongoDatabase {
             'regId',
             'entryTime',
             'exitTime',
+            'isCheckedIn',
           ],
         ),
       ),
     );
   }
 
-  // static update({required String regId}) {
-  //   userCollection.updateOne(
-  //       where.eq('regId', regId), 
-  //       modify.set('is_checked_in', 'True'));
-  // }
+  static update({required String regId, required bool entryMode}) {
+    userCollection.updateOne(
+      where.eq('regId', regId),
+      entryMode
+          ? {
+              'entryTime': DateTime.now().hour.toString() +
+                  DateTime.now().minute.toString(),
+              'isCheckedIn': 'true',
+            }
+          : {
+              'exitTime': DateTime.now().hour.toString() +
+                  DateTime.now().minute.toString(),
+            },
+    );
+  }
 }

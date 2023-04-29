@@ -5,7 +5,7 @@ import 'login.dart';
 
 Future<void> main() async {
    WidgetsFlutterBinding.ensureInitialized();
-  await MongoDatabase.connect();
+  // await MongoDatabase.connect();
   runApp(const MainApp());
 }
 
@@ -40,6 +40,7 @@ class MainApp extends StatelessWidget {
       //TODO: Remove DebugPrints
       //TODO: Separate sensitive info
       //TODO: Setup write/fetch guard
+      //TODO: Enable Database 
       home: const LoginPage(),
     );
   }
