@@ -43,7 +43,7 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
         foregroundColor: Colors.white,
         title: Text(
           widget.isInEntryMode ? 'Entry Page' : 'On Exit',
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         backgroundColor: widget.isInEntryMode

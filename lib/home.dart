@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -34,7 +33,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  StopBore(),
+                  const StopBore(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
