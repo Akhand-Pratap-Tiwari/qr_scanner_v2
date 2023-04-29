@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 var contTxtStyle = const TextStyle(color: Colors.white);
 
@@ -33,11 +36,52 @@ Text myText(String text) {
   );
 }
 
-class Loading extends StatelessWidget {
-  const Loading({super.key});
+class StopBore extends StatefulWidget {
+  const StopBore({super.key});
+
+  @override
+  State<StopBore> createState() => _StopBoreState();
+}
+
+class _StopBoreState extends State<StopBore> with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  int randInt = Random().nextInt(8);
+
+  @override
+  void initState() {
+    controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 30),
+    )
+      ..forward()
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          setState(() {
+            randInt = Random().nextInt(8);
+            debugPrint('debug22: ' + randInt.toString());
+            controller
+              ..reset()
+              ..forward();
+          });
+        }
+      });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return AnimatedSwitcher(
+      duration: Duration(milliseconds: 500),
+      child: LottieBuilder.asset(
+        'assets/$randInt.json',
+        key: ValueKey(randInt),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }
