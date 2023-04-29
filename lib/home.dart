@@ -25,17 +25,15 @@ class _HomePageState extends State<HomePage> {
                   ElevatedButton.icon(
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const EntryAndExitPage(entryMode: true),
+                        builder: (context) =>
+                            const EntryAndExitPage(entryMode: true),
                       ),
                     ),
                     icon: const Icon(
                       Icons.login_rounded,
                       // color: Colors.white,
                     ),
-                    label: const Text(
-                      'Entry',
-                      // style: TextStyle(color: Colors.white),
-                    ),
+                    label: const Text('Entry'),
                     style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.green),
                     ),
@@ -44,17 +42,15 @@ class _HomePageState extends State<HomePage> {
                   ElevatedButton.icon(
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const EntryAndExitPage(entryMode: false),
+                        builder: (context) =>
+                            const EntryAndExitPage(entryMode: false),
                       ),
                     ),
                     icon: const Icon(
                       Icons.logout_rounded,
                       // color: Colors.white,
                     ),
-                    label: const Text(
-                      'Exit',
-                      // style: TextStyle(color: Colors.white),
-                    ),
+                    label: const Text('Exit'),
                     style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.red),
                     ),

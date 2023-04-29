@@ -39,8 +39,8 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Entry Page',
+        title: Text(
+          widget.entryMode ? 'Entry Page' : 'On Exit',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor:
