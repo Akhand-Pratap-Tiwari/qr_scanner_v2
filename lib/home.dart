@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'entry_and_exit.dart';
-import 'exit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,7 +25,7 @@ class _HomePageState extends State<HomePage> {
                   FilledButton.icon(
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => EntryAndExitPage(entryMode: true),
+                        builder: (context) => const EntryAndExitPage(entryMode: true),
                       ),
                     ),
                     icon: const Icon(
@@ -37,15 +36,15 @@ class _HomePageState extends State<HomePage> {
                       'Entry',
                       // style: TextStyle(color: Colors.white),
                     ),
-                    style: ButtonStyle(
+                    style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.green),
                     ),
                   ),
-                  SizedBox(height: 50, child: VerticalDivider()),
+                  const SizedBox(height: 50, child: VerticalDivider()),
                   FilledButton.icon(
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => EntryAndExitPage(entryMode: false),
+                        builder: (context) => const EntryAndExitPage(entryMode: false),
                       ),
                     ),
                     icon: const Icon(
@@ -56,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                       'Exit',
                       // style: TextStyle(color: Colors.white),
                     ),
-                    style: ButtonStyle(
+                    style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.red),
                     ),
                   ),

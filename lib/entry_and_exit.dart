@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-
 import 'commons.dart';
 import 'database/database.dart';
 
@@ -42,7 +39,7 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Entry Page',
           style: TextStyle(color: Colors.white),
         ),

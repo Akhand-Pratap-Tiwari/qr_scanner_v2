@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class ExitPage extends StatefulWidget {
   const ExitPage({super.key});
@@ -14,7 +12,7 @@ class _ExitPageState extends State<ExitPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Exit Page',
           style: TextStyle(color: Colors.white),
         ),

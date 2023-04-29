@@ -78,18 +78,13 @@ class MongoDatabase {
   }
 
   static update({required String regId, required bool entryMode}) {
+    String dateTime =
+        DateTime.now().hour.toString() + DateTime.now().minute.toString();
     userCollection.updateOne(
       where.eq('regId', regId),
       entryMode
-          ? {
-              'entryTime': DateTime.now().hour.toString() +
-                  DateTime.now().minute.toString(),
-              'isCheckedIn': 'true',
-            }
-          : {
-              'exitTime': DateTime.now().hour.toString() +
-                  DateTime.now().minute.toString(),
-            },
+          ? modify.set('entryTime', dateTime).set('isCheckedIn', 'true')
+          : modify.set('exitTime', dateTime),
     );
   }
 }
