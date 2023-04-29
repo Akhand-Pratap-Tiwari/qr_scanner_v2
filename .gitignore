@@ -49,3 +49,5 @@ app.*.map.json
 /macos/
 /lib/secrets/
 /windows/
+/android/
+/ios/
