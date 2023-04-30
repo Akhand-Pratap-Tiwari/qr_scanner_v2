@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:qr_scanner_v2/commons.dart';
 
 import 'entry_and_exit.dart';
 

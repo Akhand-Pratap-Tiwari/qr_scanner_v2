@@ -1,7 +1,5 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 var contTxtStyle = const TextStyle(color: Colors.white);
 
