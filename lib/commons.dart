@@ -36,57 +36,57 @@ Text myText(String text) {
   );
 }
 
-class StopBore extends StatefulWidget {
-  const StopBore({super.key});
+// class StopBore extends StatefulWidget {
+//   const StopBore({super.key});
 
-  @override
-  State<StopBore> createState() => _StopBoreState();
-}
+//   @override
+//   State<StopBore> createState() => _StopBoreState();
+// }
 
-class _StopBoreState extends State<StopBore>
-    with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late List<String> pathList;
-  late int randInt;
+// class _StopBoreState extends State<StopBore>
+//     with SingleTickerProviderStateMixin {
+//   late AnimationController controller;
+//   late List<String> pathList;
+//   late int randInt;
 
-  @override
-  void initState() {
-    pathList = List.generate(3, (index) => 'assets/$index.json');
-    randInt = Random().nextInt(pathList.length);
-    controller = AnimationController(
-      vsync: this,
-      duration: const Duration(minutes: 1),
-    )
-      ..forward()
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          setState(() {
+//   @override
+//   void initState() {
+//     pathList = List.generate(3, (index) => 'assets/$index.json');
+//     randInt = Random().nextInt(pathList.length);
+//     controller = AnimationController(
+//       vsync: this,
+//       duration: const Duration(minutes: 1),
+//     )
+//       ..forward()
+//       ..addStatusListener((status) {
+//         if (status == AnimationStatus.completed) {
+//           setState(() {
 
-            randInt = Random().nextInt(pathList.length);
-            debugPrint('debug1: ' + randInt.toString());
-            controller
-              ..reset()
-              ..forward();
-          });
-        }
-      });
-    super.initState();
-  }
+//             randInt = Random().nextInt(pathList.length);
+//             // debugPrint('debug1: ' + randInt.toString());
+//             controller
+//               ..reset()
+//               ..forward();
+//           });
+//         }
+//       });
+//     super.initState();
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 500),
-      child: LottieBuilder.asset(
-        pathList[randInt],
-        key: ValueKey(randInt),
-      ),
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return AnimatedSwitcher(
+//       duration: const Duration(milliseconds: 500),
+//       child: LottieBuilder.asset(
+//         pathList[randInt],
+//         key: ValueKey(randInt),
+//       ),
+//     );
+//   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-}
+//   @override
+//   void dispose() {
+//     controller.dispose();
+//     super.dispose();
+//   }
+// }

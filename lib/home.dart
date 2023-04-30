@@ -31,9 +31,10 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const StopBore(),
+                  // const StopBore(),
+                  LottieBuilder.asset('assets/home.json'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -53,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                           label: const Text('Entry'),
                           style: const ButtonStyle(
                             backgroundColor:
-                                MaterialStatePropertyAll(Colors.green),
+                                MaterialStatePropertyAll(Colors.blueAccent),
                           ),
                         ),
                       ),
@@ -73,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           label: const Text('Exit'),
                           style: const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(Colors.red),
+                            backgroundColor: MaterialStatePropertyAll(Colors.pinkAccent),
                           ),
                         ),
                       ),

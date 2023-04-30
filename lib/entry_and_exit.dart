@@ -43,7 +43,7 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
       appBar: AppBar(
         foregroundColor: Colors.white,
         title: Text(
-          widget.isInEntryMode ? 'Entry Page' : 'On Exit',
+          widget.isInEntryMode ? 'Entry' : 'Exit',
           style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
@@ -54,16 +54,6 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ClipRRect(
-              child: LottieBuilder.asset(
-                widget.isInEntryMode ? 'assets/cryptoBg.json' : 'assets/particleBg.json',
-                height: size.height/1.5,
-                // fit: BoxFit.contain,
-              ),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(
@@ -76,6 +66,10 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: LottieBuilder.asset('assets/entryExit.json'),
+                      ),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(16),
                         child: MobileScanner(
@@ -157,8 +151,8 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
                         label: const Text('Stop'),
                       )
                     : Hero(
-                      tag: widget.isInEntryMode ? 'entry' : 'exit',
-                      child: ElevatedButton.icon(
+                        tag: widget.isInEntryMode ? 'entry' : 'exit',
+                        child: ElevatedButton.icon(
                           onPressed: () {
                             mobileScannerController.start();
                             setState(() {
@@ -173,7 +167,7 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
                           icon: const Icon(Icons.document_scanner_outlined),
                           label: const Text('Scan'),
                         ),
-                    ),
+                      ),
               ],
             ),
           ),
