@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
               width: size.width,
               height: size.height,
               child: LottieBuilder.asset(
-                'assets/homeBg.json',
+                'assets/bg.json',
                 fit: BoxFit.fitHeight,
               ),
             ),
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                           label: const Text('Entry'),
                           style: const ButtonStyle(
                             backgroundColor:
-                                MaterialStatePropertyAll(Colors.blueAccent),
+                                MaterialStatePropertyAll(Colors.green),
                           ),
                         ),
                       ),
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           label: const Text('Exit'),
                           style: const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(Colors.pinkAccent),
+                            backgroundColor: MaterialStatePropertyAll(Colors.red),
                           ),
                         ),
                       ),

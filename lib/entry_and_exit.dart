@@ -48,12 +48,20 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
         ),
         centerTitle: true,
         backgroundColor: widget.isInEntryMode
-            ? Colors.blueAccent.withOpacity(0.8)
-            : Colors.pinkAccent.withOpacity(0.8),
+            ? Colors.green.withOpacity(0.8)
+            : Colors.redAccent.withOpacity(0.8),
       ),
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
+          SizedBox(
+            width: size.width,
+            height: size.height,
+            child: LottieBuilder.asset(
+              'assets/bg.json',
+              fit: BoxFit.fitHeight,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(
