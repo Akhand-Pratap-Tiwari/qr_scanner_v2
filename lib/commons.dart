@@ -43,21 +43,27 @@ class StopBore extends StatefulWidget {
   State<StopBore> createState() => _StopBoreState();
 }
 
-class _StopBoreState extends State<StopBore> with SingleTickerProviderStateMixin {
+class _StopBoreState extends State<StopBore>
+    with SingleTickerProviderStateMixin {
   late AnimationController controller;
-  int randInt = Random().nextInt(8);
+  late List<String> pathList;
+  late int randInt;
 
   @override
   void initState() {
+    pathList = List.generate(3, (index) => 'assets/$index.json');
+    randInt = Random().nextInt(pathList.length);
     controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 30),
+      duration: const Duration(minutes: 1),
     )
       ..forward()
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           setState(() {
-            randInt = Random().nextInt(8);
+
+            randInt = Random().nextInt(pathList.length);
+            debugPrint('debug1: ' + randInt.toString());
             controller
               ..reset()
               ..forward();
@@ -72,7 +78,7 @@ class _StopBoreState extends State<StopBore> with SingleTickerProviderStateMixin
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 500),
       child: LottieBuilder.asset(
-        'assets/$randInt.json',
+        pathList[randInt],
         key: ValueKey(randInt),
       ),
     );

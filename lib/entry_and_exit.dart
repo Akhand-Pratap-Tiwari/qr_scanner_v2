@@ -39,6 +39,7 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Colors.white12,
       appBar: AppBar(
         foregroundColor: Colors.white,
         title: Text(
@@ -47,18 +48,20 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
         ),
         centerTitle: true,
         backgroundColor: widget.isInEntryMode
-            ? Colors.indigo
+            ? Colors.blueAccent.withOpacity(0.8)
             : Colors.pinkAccent.withOpacity(0.8),
       ),
       body: Stack(
-        alignment: Alignment.center,
+        alignment: Alignment.topCenter,
         children: [
-          SizedBox(
-            height: size.height,
-            width: size.width,
-            child: LottieBuilder.asset(
-              widget.isInEntryMode ? 'assets/bgNight.json' : 'assets/bgDay.json',
-              fit: BoxFit.fitHeight,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ClipRRect(
+              child: LottieBuilder.asset(
+                widget.isInEntryMode ? 'assets/cryptoBg.json' : 'assets/particleBg.json',
+                height: size.height/1.5,
+                // fit: BoxFit.contain,
+              ),
             ),
           ),
           Padding(
