@@ -3,5 +3,5 @@ So, there was an emergency request from a club to make a qr scanner app that can
 </br>
 </br>
 A further plan is to work with the team that was working on the system and set up a deployable pipeline and integrate this app with it so that anyone can use this system for the ticket management at the club events held at the college.
-##To do for Future:
+## To do for Future:
 Better code organization by doing more granualar widget abstraction.
