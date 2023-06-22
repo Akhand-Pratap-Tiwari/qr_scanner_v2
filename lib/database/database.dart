@@ -9,6 +9,7 @@ class User {
   String entryTime;
   String exitTime;
   String isCheckedIn;
+  String isCheckedOut;
 
   static const Map<String, String> defMap = {
     'name': 'ResponseError',
@@ -16,6 +17,7 @@ class User {
     'entryTime': 'ResponseError',
     'exitTime': 'ResponseError',
     'isCheckedIn': 'ResponseError',
+    'isCheckedOut' : 'ResponseError',
   };
 
   User({
@@ -24,6 +26,7 @@ class User {
     required this.entryTime,
     required this.exitTime,
     required this.isCheckedIn,
+    required this.isCheckedOut,
   });
 
   Map<String, String> toMap() {
@@ -33,6 +36,7 @@ class User {
       'entryTime': entryTime,
       'exitTime': exitTime,
       'isCheckedIn': isCheckedIn,
+      'isCheckedOut' : isCheckedOut,
     };
   }
 
@@ -41,10 +45,11 @@ class User {
         regId = (map ?? defMap)['regId'] ?? 'NullFieldError',
         entryTime = (map ?? defMap)['entryTime'] ?? 'NullFieldError',
         exitTime = (map ?? defMap)['exitTime'] ?? 'NullFieldError',
-        isCheckedIn = (map ?? defMap)['isCheckedIn'] ?? 'NullFieldError';
+        isCheckedIn = (map ?? defMap)['isCheckedIn'] ?? 'NullFieldError',
+        isCheckedOut = (map ?? defMap)['isCheckedOut'] ?? 'NullFieldError';
 
   void displayData() =>
-      debugPrint('debug: $name $regId $entryTime $exitTime $isCheckedIn');
+      debugPrint('debug: $name $regId $entryTime $exitTime $isCheckedIn $isCheckedOut');
 }
 
 class MongoDatabase {
@@ -71,20 +76,21 @@ class MongoDatabase {
             'entryTime',
             'exitTime',
             'isCheckedIn',
+            'isCheckedOut',
           ],
         ),
       ),
     );
   }
 
-  static update({required String regId, required bool entryMode}) {
+  static update({required String regId, required bool isInEntryMode}) {
     String dateTime =
         DateTime.now().hour.toString() + DateTime.now().minute.toString();
     userCollection.updateOne(
       where.eq('regId', regId),
-      entryMode
-          ? modify.set('entryTime', dateTime).set('isCheckedIn', 'true')
-          : modify.set('exitTime', dateTime),
+      isInEntryMode
+          ? modify.set('entryTime', dateTime).set('isCheckedIn', 'true').set('isCheckedOut', 'false')
+          : modify.set('exitTime', dateTime).set('isCheckedOut', 'true').set('isCheckedIn', 'false'),
     );
   }
 }

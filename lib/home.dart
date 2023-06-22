@@ -51,9 +51,9 @@ class _HomePageState extends State<HomePage> {
                             // color: Colors.white,
                           ),
                           label: const Text('Entry'),
-                          style: const ButtonStyle(
+                          style:  ButtonStyle(
                             backgroundColor:
-                                MaterialStatePropertyAll(Colors.green),
+                                MaterialStatePropertyAll(Colors.indigo),
                           ),
                         ),
                       ),
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           label: const Text('Exit'),
                           style: const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(Colors.red),
+                            backgroundColor: MaterialStatePropertyAll(Colors.pink),
                           ),
                         ),
                       ),

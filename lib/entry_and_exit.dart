@@ -39,6 +39,7 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: Colors.white12,
       appBar: AppBar(
         foregroundColor: Colors.white,
@@ -47,23 +48,31 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
           style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: widget.isInEntryMode
-            ? Colors.green.withOpacity(0.8)
-            : Colors.redAccent.withOpacity(0.8),
+        backgroundColor: Colors.transparent,
+        // backgroundColor: widget.isInEntryMode
+        //     ? Colors.green.withOpacity(0.8)
+        //     : Colors.redAccent.withOpacity(0.8),
       ),
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
           SizedBox(
-            width: size.width,
             height: size.height,
-            child: LottieBuilder.asset(
-              'assets/bg.json',
-              fit: BoxFit.fitHeight,
+            width: size.height,
+            child: RotatedBox(
+              quarterTurns: 1,
+              child: ImageFiltered(
+                enabled: !widget.isInEntryMode,
+                imageFilter: ColorFilter.mode(Colors.red, BlendMode.colorDodge),
+                child: LottieBuilder.asset(
+                  'assets/bg.json',
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.fromLTRB(8, 48, 8, 0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               mainAxisSize: MainAxisSize.max,
@@ -76,7 +85,11 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: LottieBuilder.asset('assets/entryExit.json'),
+                        child: LottieBuilder.asset(
+                          widget.isInEntryMode
+                              ? 'assets/entryExit.json'
+                              : 'assets/entryExit2.json',
+                        ),
                       ),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(16),
@@ -90,41 +103,42 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
                               setState(() {
                                 mobileScannerController.stop();
                                 isScanning = false;
+
                                 if (barcode.rawValue == null) {
                                   widget1 = myText('Null Error. Try Again !');
                                   gradient = blackGradient;
                                 } else if (user.regId == 'ResponseError') {
-                                  user.displayData();
                                   widget1 = myText('Invalid Ticket');
                                   gradient = redGradient;
+                                } else if (user.isCheckedOut.toLowerCase() ==
+                                    'true') {
+                                  widget1 = myText(
+                                      'Guest Already Checked Out\nName: ${user.name}\nReg No.: ${user.regId}');
+                                  gradient = yellowGradient;
                                 } else if (user.isCheckedIn.toLowerCase() ==
                                         'true' &&
                                     widget.isInEntryMode) {
-                                  user.displayData();
                                   widget1 = myText(
                                       'Guest Already Checked In\nName: ${user.name}\nReg No.: ${user.regId}');
                                   gradient = yellowGradient;
                                 } else if (user.isCheckedIn.toLowerCase() ==
                                         'true' &&
                                     !widget.isInEntryMode) {
-                                  user.displayData();
                                   widget1 = myText(
                                       'Name: ${user.name}\nReg No.: ${user.regId}');
                                   gradient = greenGradient;
                                   MongoDatabase.update(
                                       regId: barcode.rawValue!,
-                                      entryMode: widget.isInEntryMode);
+                                      isInEntryMode: widget.isInEntryMode);
                                 } else {
-                                  user.displayData();
                                   widget1 = myText(
                                       'Name: ${user.name}\nReg No.: ${user.regId}');
                                   gradient = greenGradient;
                                   MongoDatabase.update(
                                       regId: barcode.rawValue!,
-                                      entryMode: widget.isInEntryMode);
+                                      isInEntryMode: widget.isInEntryMode);
                                 }
                               });
-                              debugPrint('debug: ${barcode.rawValue}');
                             }
                           },
                         ),
