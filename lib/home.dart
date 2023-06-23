@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                     // borderRadius: BorderRadius.circular(8),
                     onTap: () {
                       showAboutDialog(
-                        applicationName: 'Club TT',
+                        applicationName: 'ClubT Scanner',
                         applicationVersion: 'v3.1',
                         applicationLegalese:
                             'This app is a property of VIT, Bhopal students. Commercial use without permission or reverse engineering is not permitted.',
