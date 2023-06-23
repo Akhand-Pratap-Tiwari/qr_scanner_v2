@@ -4,7 +4,7 @@ import 'database/database.dart';
 import 'login.dart';
 
 Future<void> main() async {
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await MongoDatabase.connect();
   runApp(const MainApp());
 }

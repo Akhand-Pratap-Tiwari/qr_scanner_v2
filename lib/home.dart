@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 import 'entry_and_exit.dart';
 
 class HomePage extends StatefulWidget {
@@ -108,25 +108,25 @@ class _HomePageState extends State<HomePage> {
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           ListTile(
-                            title: Text('Akhand P. Tiwari'),
+                            title: const Text('Akhand P. Tiwari'),
                             tileColor: Colors.black12,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16)),
                             trailing: IconButton(
-                              onPressed: () => UrlLauncher.launchUrl(
+                              onPressed: () => url_launcher.launchUrl(
                                 Uri.parse('tel: +917309040494'),
                               ),
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.phone,
                                 color: Colors.black87,
                               ),
                             ),
                           ),
-                          SizedBox(height: 16),
+                          const SizedBox(height: 16),
                           ListTile(
-                            title: Text('Anand Lahoti'),
+                            title: const Text('Anand Lahoti'),
                             tileColor: Colors.black12,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16)),
@@ -134,7 +134,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                       );
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.info,
                       color: Colors.white,
                       size: 30,

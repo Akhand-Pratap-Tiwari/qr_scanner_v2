@@ -20,10 +20,13 @@ class _LoginPageState extends State<LoginPage> {
 
   var idController = TextEditingController();
   var passController = TextEditingController();
+  var collectionController = TextEditingController();
 
   void _validator(BuildContext context) {
     var id = idController.text.trim();
     var pass = passController.text.trim();
+    var collection = collectionController.text.trim();
+    
 
     if (id == '' || pass == '' || pass != univPass || id != univId) {
       showDialog(
@@ -94,6 +97,12 @@ class _LoginPageState extends State<LoginPage> {
                         controller: passController,
                         decoration:
                             const InputDecoration(labelText: "Password"),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      TextField(
+                        controller: collectionController,
+                        decoration:
+                            const InputDecoration(labelText: "Collection Name"),
                         style: const TextStyle(color: Colors.white),
                       ),
                       FloatingActionButton.extended(
