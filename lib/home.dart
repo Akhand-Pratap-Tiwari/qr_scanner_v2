@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import 'entry_and_exit.dart';
 
 class HomePage extends StatefulWidget {
@@ -51,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                             // color: Colors.white,
                           ),
                           label: const Text('Entry'),
-                          style:  ButtonStyle(
+                          style: const ButtonStyle(
                             backgroundColor:
                                 MaterialStatePropertyAll(Colors.indigo),
                           ),
@@ -73,13 +72,75 @@ class _HomePageState extends State<HomePage> {
                           ),
                           label: const Text('Exit'),
                           style: const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(Colors.pink),
+                            backgroundColor:
+                                MaterialStatePropertyAll(Colors.pink),
                           ),
                         ),
                       ),
                     ],
                   ),
                 ],
+              ),
+            ),
+            SizedBox(
+              height: size.height,
+              width: size.width,
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: InkResponse(
+                    // splashColor: Colors.red,
+                    // radius: 300,
+                    // borderRadius: BorderRadius.circular(8),
+                    onTap: () {
+                      showAboutDialog(
+                        applicationName: 'Club TT',
+                        applicationVersion: 'v3.1',
+                        applicationLegalese:
+                            'This app is a property of VIT, Bhopal students. Commercial use without permission or reverse engineering is not permitted.',
+                        context: context,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 16.0, 0, 8.0),
+                            child: Text(
+                              'Built By: ',
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          ListTile(
+                            title: Text('Akhand P. Tiwari'),
+                            tileColor: Colors.black12,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16)),
+                            trailing: IconButton(
+                              onPressed: () => UrlLauncher.launchUrl(
+                                Uri.parse('tel: +917309040494'),
+                              ),
+                              icon: Icon(
+                                Icons.phone,
+                                color: Colors.black87,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          ListTile(
+                            title: Text('Anand Lahoti'),
+                            tileColor: Colors.black12,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16)),
+                          ),
+                        ],
+                      );
+                    },
+                    child: Icon(
+                      Icons.info,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],

@@ -63,7 +63,7 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
               quarterTurns: 1,
               child: ImageFiltered(
                 enabled: !widget.isInEntryMode,
-                imageFilter: ColorFilter.mode(Colors.red, BlendMode.colorDodge),
+                imageFilter: const ColorFilter.mode(Colors.red, BlendMode.colorDodge),
                 child: LottieBuilder.asset(
                   'assets/bg.json',
                   fit: BoxFit.cover,
