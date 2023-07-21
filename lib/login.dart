@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'database/database.dart';
 import 'home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,13 +21,14 @@ class _LoginPageState extends State<LoginPage> {
 
   var idController = TextEditingController();
   var passController = TextEditingController();
-  var collectionController = TextEditingController();
+  var collecController = TextEditingController();
+  var dbController = TextEditingController();
 
-  void _validator(BuildContext context) {
+  Future<void> _validator(BuildContext context) async {
     var id = idController.text.trim();
     var pass = passController.text.trim();
-    var collection = collectionController.text.trim();
-    
+    var collec = collecController.text.trim();
+    var database = dbController.text.trim();
 
     if (id == '' || pass == '' || pass != univPass || id != univId) {
       showDialog(
@@ -46,11 +48,67 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     } else {
-      Navigator.of(context).pop();
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => const HomePage(),
-        ),
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return Dialog(
+            insetPadding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width / 4),
+            child: const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: AspectRatio(
+                aspectRatio: 1,
+                child: CircularProgressIndicator(),
+              ),
+            ),
+          );
+        },
+      );
+      await MongoDatabase.connect(collecName: collec, dbName: database).then(
+        (db) async {
+          await db.open();
+          db.getCollectionNames().then((collecList) {
+            if (collecList.contains(collec)) {
+              MongoDatabase.userCollection = db.collection(collec);
+              Navigator.of(context).pop(); //For Loading
+              Navigator.of(context).pop(); //For Screen
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const HomePage(),
+                ),
+              );
+            } else {
+              Navigator.of(context).pop(); //For loading
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return const Dialog(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text("Can't find collection..."),
+                    ),
+                  );
+                },
+              );
+            }
+          });
+        },
+      ).onError(
+        (error, stackTrace) {
+          Navigator.of(context).pop(); //For loading
+          showDialog(
+            context: context,
+            builder: (context) {
+              return const Dialog(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text('Looks like a typo in Database Name...'),
+                ),
+              );
+            },
+          );
+        },
       );
     }
   }
@@ -100,7 +158,13 @@ class _LoginPageState extends State<LoginPage> {
                         style: const TextStyle(color: Colors.white),
                       ),
                       TextField(
-                        controller: collectionController,
+                        controller: dbController,
+                        decoration:
+                            const InputDecoration(labelText: "Database Name"),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      TextField(
+                        controller: collecController,
                         decoration:
                             const InputDecoration(labelText: "Collection Name"),
                         style: const TextStyle(color: Colors.white),

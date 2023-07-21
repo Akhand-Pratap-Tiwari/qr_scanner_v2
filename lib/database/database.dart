@@ -17,7 +17,7 @@ class User {
     'entryTime': 'ResponseError',
     'exitTime': 'ResponseError',
     'isCheckedIn': 'ResponseError',
-    'isCheckedOut' : 'ResponseError',
+    'isCheckedOut': 'ResponseError',
   };
 
   User({
@@ -36,7 +36,7 @@ class User {
       'entryTime': entryTime,
       'exitTime': exitTime,
       'isCheckedIn': isCheckedIn,
-      'isCheckedOut' : isCheckedOut,
+      'isCheckedOut': isCheckedOut,
     };
   }
 
@@ -48,19 +48,18 @@ class User {
         isCheckedIn = (map ?? defMap)['isCheckedIn'] ?? 'NullFieldError',
         isCheckedOut = (map ?? defMap)['isCheckedOut'] ?? 'NullFieldError';
 
-  void displayData() =>
-      debugPrint('debug: $name $regId $entryTime $exitTime $isCheckedIn $isCheckedOut');
+  void displayData() => debugPrint(
+      'debug: $name $regId $entryTime $exitTime $isCheckedIn $isCheckedOut');
 }
 
 class MongoDatabase {
-  static String dbStr = s_dbStr;
-  static Db db = Db(dbStr);
-  static DbCollection userCollection = db.collection(s_userCollection);
+  // static String dbStr = s_db;
+  // static late Future<Db> db;
+  static late DbCollection userCollection;
 
-  static connect() async {
-    db = await Db.create(dbStr);
-    await db.open();
-    userCollection = db.collection(s_userCollection);
+  static Future<Db> connect(
+      {required String dbName, required collecName}) async {
+    return Db.create('mongodb+srv://$secs/$dbName?retryWrites=true&w=majority');
   }
 
   static insert(User user) async =>
@@ -89,8 +88,14 @@ class MongoDatabase {
     userCollection.updateOne(
       where.eq('regId', regId),
       isInEntryMode
-          ? modify.set('entryTime', dateTime).set('isCheckedIn', 'true').set('isCheckedOut', 'false')
-          : modify.set('exitTime', dateTime).set('isCheckedOut', 'true').set('isCheckedIn', 'false'),
+          ? modify
+              .set('entryTime', dateTime)
+              .set('isCheckedIn', 'true')
+              .set('isCheckedOut', 'false')
+          : modify
+              .set('exitTime', dateTime)
+              .set('isCheckedOut', 'true')
+              .set('isCheckedIn', 'false'),
     );
   }
 }
