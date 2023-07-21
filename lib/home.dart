@@ -81,10 +81,9 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       const SizedBox(
-                          width: 50,
-                          child: Divider(
-                            height: 24,
-                          )),
+                        width: 8*15,
+                        child: Divider(height: 24),
+                      ),
                       ElevatedButton.icon(
                         onPressed: () {
                           showDialog(
@@ -132,21 +131,20 @@ class SupportDialog extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: Text(
-                'Built By: ',
-                style: Theme.of(context).textTheme.bodyLarge,
+              child: ListTile(
+                title: Text('ClubT Scanner'),
+                subtitle: Text('v3.2'),
               ),
             ),
             const SizedBox(height: 16),
             ListTile(
               title: const Text('Akhand P. Tiwari'),
               subtitle: const Text('+91 73090 40494'),
-              tileColor: Colors.black12,
+              tileColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
               trailing: CircleAvatar(
-                backgroundColor: Colors.white,
                 child: IconButton(
                   onPressed: () => url_launcher.launchUrl(
                     Uri.parse('tel: +917309040494'),
@@ -162,12 +160,11 @@ class SupportDialog extends StatelessWidget {
             ListTile(
               title: const Text('Anand Lahoti'),
               subtitle: const Text('+91 98933 58161'),
-              tileColor: Colors.black12,
+              tileColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
               trailing: CircleAvatar(
-                backgroundColor: Colors.white,
                 child: IconButton(
                   onPressed: () => url_launcher.launchUrl(
                     Uri.parse('tel: +919893358161'),
