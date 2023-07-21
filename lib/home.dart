@@ -26,42 +26,45 @@ class _HomePageState extends State<HomePage> {
                 fit: BoxFit.fitHeight,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  // const StopBore(),
-                  LottieBuilder.asset('assets/home.json'),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Hero(
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Hero(
                         tag: 'entry',
-                        child: ElevatedButton.icon(
-                          onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const EntryAndExitPage(isInEntryMode: true),
+                        child: SizedBox(
+                          height: 8 * 15,
+                          child: ElevatedButton.icon(
+                            onPressed: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const EntryAndExitPage(isInEntryMode: true),
+                              ),
+                            ),
+                            icon: const Icon(
+                              Icons.login_rounded,
+                              // color: Colors.white,
+                            ),
+                            label: const Text('Entry'),
+                            style: ButtonStyle(
+                              shape: MaterialStatePropertyAll(
+                                RoundedRectangleBorder(
+                                  side: BorderSide(color: Colors.white),
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                              ),
+                              backgroundColor:
+                                  MaterialStatePropertyAll(Colors.indigo),
                             ),
                           ),
-                          icon: const Icon(
-                            Icons.login_rounded,
-                            // color: Colors.white,
-                          ),
-                          label: const Text('Entry'),
-                          style: const ButtonStyle(
-                            backgroundColor:
-                                MaterialStatePropertyAll(Colors.indigo),
-                          ),
-                        ),
-                      ),
-                      // Spacer(),
-                      Divider(
-                        color: Colors.transparent,
-                      ),
-                      Hero(
-                        tag: 'exit',
+                        )),
+                    SizedBox(height: 8 * 15, child: VerticalDivider(width: 32,)),
+                    Hero(
+                      tag: 'exit',
+                      child: SizedBox(
+                        height: 8 * 15,
                         child: ElevatedButton.icon(
                           onPressed: () => Navigator.of(context).push(
                             MaterialPageRoute(
@@ -74,42 +77,43 @@ class _HomePageState extends State<HomePage> {
                             // color: Colors.white,
                           ),
                           label: const Text('Exit'),
-                          style: const ButtonStyle(
+                          style: ButtonStyle(
+                            shape: MaterialStatePropertyAll(
+                              RoundedRectangleBorder(
+                                side: BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
                             backgroundColor:
                                 MaterialStatePropertyAll(Colors.pink),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        width: 8*15,
-                        child: Divider(height: 24),
-                      ),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => SupportDialog(),
-                          );
-                        },
-                        icon: const Icon(
-                          Icons.support_agent_rounded,
-                          color: Colors.black,
-                        ),
-                        label: const Text(
-                          'Support',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
+        ),
+        floatingActionButton: ElevatedButton.icon(
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) => SupportDialog(),
+            );
+          },
+          icon: const Icon(
+            Icons.support_agent_rounded,
+            color: Colors.black,
+          ),
+          label: const Text(
+            'Support',
+            style: TextStyle(color: Colors.black),
+          ),
+          style: const ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(Colors.white),
+          ),
         ),
       ),
     );
