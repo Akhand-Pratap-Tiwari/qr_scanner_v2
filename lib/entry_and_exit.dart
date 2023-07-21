@@ -83,14 +83,14 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: LottieBuilder.asset(
-                          widget.isInEntryMode
-                              ? 'assets/entryExit.json'
-                              : 'assets/entryExit2.json',
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: LottieBuilder.asset(
+                      //     widget.isInEntryMode
+                      //         ? 'assets/entryExit.json'
+                      //         : 'assets/entryExit2.json',
+                      //   ),
+                      // ),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(16),
                         child: MobileScanner(
