@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'database/database.dart';
 import 'login.dart';
 
 Future<void> main() async {

@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   // const StopBore(),
                   LottieBuilder.asset('assets/home.json'),
-                  Row(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Hero(
@@ -56,7 +56,10 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 50, child: VerticalDivider()),
+                      // Spacer(),
+                      Divider(
+                        color: Colors.transparent,
+                      ),
                       Hero(
                         tag: 'exit',
                         child: ElevatedButton.icon(
@@ -77,68 +80,101 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
+                      const SizedBox(
+                          width: 50,
+                          child: Divider(
+                            height: 24,
+                          )),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => SupportDialog(),
+                          );
+                        },
+                        icon: const Icon(
+                          Icons.support_agent_rounded,
+                          color: Colors.black,
+                        ),
+                        label: const Text(
+                          'Support',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.white),
+                        ),
+                      ),
                     ],
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: size.height,
-              width: size.width,
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: InkResponse(
-                    // splashColor: Colors.red,
-                    // radius: 300,
-                    // borderRadius: BorderRadius.circular(8),
-                    onTap: () {
-                      showAboutDialog(
-                        applicationName: 'ClubT Scanner',
-                        applicationVersion: 'v3.1',
-                        applicationLegalese:
-                            'This app is a property of VIT, Bhopal students. Commercial use without permission or reverse engineering is not permitted.',
-                        context: context,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 16.0, 0, 8.0),
-                            child: Text(
-                              'Built By: ',
-                              style: Theme.of(context).textTheme.bodyLarge,
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          ListTile(
-                            title: const Text('Akhand P. Tiwari'),
-                            tileColor: Colors.black12,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
-                            trailing: IconButton(
-                              onPressed: () => url_launcher.launchUrl(
-                                Uri.parse('tel: +917309040494'),
-                              ),
-                              icon: const Icon(
-                                Icons.phone,
-                                color: Colors.black87,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          ListTile(
-                            title: const Text('Anand Lahoti'),
-                            tileColor: Colors.black12,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
-                          ),
-                        ],
-                      );
-                    },
-                    child: const Icon(
-                      Icons.info,
-                      color: Colors.white,
-                      size: 30,
-                    ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SupportDialog extends StatelessWidget {
+  const SupportDialog({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Built By: ',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ),
+            const SizedBox(height: 16),
+            ListTile(
+              title: const Text('Akhand P. Tiwari'),
+              subtitle: const Text('+91 73090 40494'),
+              tileColor: Colors.black12,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              trailing: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: IconButton(
+                  onPressed: () => url_launcher.launchUrl(
+                    Uri.parse('tel: +917309040494'),
+                  ),
+                  icon: const Icon(
+                    Icons.phone,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            ListTile(
+              title: const Text('Anand Lahoti'),
+              subtitle: const Text('+91 98933 58161'),
+              tileColor: Colors.black12,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              trailing: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: IconButton(
+                  onPressed: () => url_launcher.launchUrl(
+                    Uri.parse('tel: +919893358161'),
+                  ),
+                  icon: const Icon(
+                    Icons.phone,
+                    color: Colors.black87,
                   ),
                 ),
               ),
