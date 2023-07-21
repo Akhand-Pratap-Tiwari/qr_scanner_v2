@@ -63,7 +63,8 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
               quarterTurns: 1,
               child: ImageFiltered(
                 enabled: !widget.isInEntryMode,
-                imageFilter: const ColorFilter.mode(Colors.red, BlendMode.colorDodge),
+                imageFilter:
+                    const ColorFilter.mode(Colors.red, BlendMode.colorDodge),
                 child: LottieBuilder.asset(
                   'assets/bg.json',
                   fit: BoxFit.cover,
@@ -158,6 +159,14 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
                 ),
                 isScanning
                     ? ElevatedButton.icon(
+                        style: ButtonStyle(
+                          shape: MaterialStatePropertyAll(
+                            RoundedRectangleBorder(
+                              side: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                          ),
+                        ),
                         onPressed: () {
                           setState(() {
                             isScanning = false;
@@ -175,6 +184,14 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
                     : Hero(
                         tag: widget.isInEntryMode ? 'entry' : 'exit',
                         child: ElevatedButton.icon(
+                          style: ButtonStyle(
+                            shape: MaterialStatePropertyAll(
+                              RoundedRectangleBorder(
+                                side: BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                            ),
+                          ),
                           onPressed: () {
                             mobileScannerController.start();
                             setState(() {
