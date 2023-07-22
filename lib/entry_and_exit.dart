@@ -1,4 +1,6 @@
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -42,27 +44,17 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.white12,
-      appBar: PreferredSize(
-        preferredSize: AppBar().preferredSize,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            ClipRect(
-              child: AppBar(
-                foregroundColor: Colors.white,
-                title: Text(
-                  widget.isInEntryMode ? 'Entry' : 'Exit',
-                  style: const TextStyle(color: Colors.white),
-                ),
-                centerTitle: true,
-                backgroundColor: Colors.transparent,
-                // backgroundColor: widget.isInEntryMode
-                //     ? Colors.green.withOpacity(0.8)
-                //     : Colors.redAccent.withOpacity(0.8),
-              ),
-            ),
-          ],
+      appBar: AppBar(
+        foregroundColor: Colors.white,
+        title: Text(
+          widget.isInEntryMode ? 'Entry' : 'Exit',
+          style: const TextStyle(color: Colors.white),
         ),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        // backgroundColor: widget.isInEntryMode
+        //     ? Colors.green.withOpacity(0.8)
+        //     : Colors.redAccent.withOpacity(0.8),
       ),
       body: Stack(
         alignment: Alignment.topCenter,
@@ -71,11 +63,11 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
             height: size.height,
             width: size.height,
             child: RotatedBox(
-              quarterTurns: 1,
+              quarterTurns: !widget.isInEntryMode ? 1 : 1,
               child: ImageFiltered(
                 enabled: !widget.isInEntryMode,
                 imageFilter:
-                    const ColorFilter.mode(Colors.red, BlendMode.colorDodge),
+                    ColorFilter.mode(Colors.pinkAccent.shade700, BlendMode.color),
                 child: LottieBuilder.asset(
                   'assets/bg.json',
                   fit: BoxFit.cover,
