@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Hero(
@@ -51,16 +52,16 @@ class _HomePageState extends State<HomePage> {
                             style: ButtonStyle(
                               shape: MaterialStatePropertyAll(
                                 RoundedRectangleBorder(
-                                  side: BorderSide(color: Colors.white),
+                                  side: const BorderSide(color: Colors.white),
                                   borderRadius: BorderRadius.circular(16),
                                 ),
                               ),
                               backgroundColor:
-                                  MaterialStatePropertyAll(Colors.indigo),
+                                  const MaterialStatePropertyAll(Colors.indigo),
                             ),
                           ),
                         )),
-                    SizedBox(height: 8 * 15, child: VerticalDivider(width: 32,)),
+                    const SizedBox(height: 8 * 15, child: VerticalDivider(width: 16)),
                     Hero(
                       tag: 'exit',
                       child: SizedBox(
@@ -80,12 +81,12 @@ class _HomePageState extends State<HomePage> {
                           style: ButtonStyle(
                             shape: MaterialStatePropertyAll(
                               RoundedRectangleBorder(
-                                side: BorderSide(color: Colors.white),
+                                side: const BorderSide(color: Colors.white),
                                 borderRadius: BorderRadius.circular(16),
                               ),
                             ),
                             backgroundColor:
-                                MaterialStatePropertyAll(Colors.pink),
+                                const MaterialStatePropertyAll(Colors.pink),
                           ),
                         ),
                       ),
@@ -100,7 +101,7 @@ class _HomePageState extends State<HomePage> {
           onPressed: () {
             showDialog(
               context: context,
-              builder: (context) => SupportDialog(),
+              builder: (context) => const SupportDialog(),
             );
           },
           icon: const Icon(
@@ -133,7 +134,7 @@ class SupportDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Align(
+            const Align(
               alignment: Alignment.centerLeft,
               child: ListTile(
                 title: Text('ClubT Scanner'),

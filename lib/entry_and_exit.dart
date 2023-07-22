@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -41,17 +42,27 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.white12,
-      appBar: AppBar(
-        foregroundColor: Colors.white,
-        title: Text(
-          widget.isInEntryMode ? 'Entry' : 'Exit',
-          style: const TextStyle(color: Colors.white),
+      appBar: PreferredSize(
+        preferredSize: AppBar().preferredSize,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            ClipRect(
+              child: AppBar(
+                foregroundColor: Colors.white,
+                title: Text(
+                  widget.isInEntryMode ? 'Entry' : 'Exit',
+                  style: const TextStyle(color: Colors.white),
+                ),
+                centerTitle: true,
+                backgroundColor: Colors.transparent,
+                // backgroundColor: widget.isInEntryMode
+                //     ? Colors.green.withOpacity(0.8)
+                //     : Colors.redAccent.withOpacity(0.8),
+              ),
+            ),
+          ],
         ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        // backgroundColor: widget.isInEntryMode
-        //     ? Colors.green.withOpacity(0.8)
-        //     : Colors.redAccent.withOpacity(0.8),
       ),
       body: Stack(
         alignment: Alignment.topCenter,
@@ -162,7 +173,7 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
                         style: ButtonStyle(
                           shape: MaterialStatePropertyAll(
                             RoundedRectangleBorder(
-                              side: BorderSide(color: Colors.white),
+                              side: const BorderSide(color: Colors.white),
                               borderRadius: BorderRadius.circular(16),
                             ),
                           ),
@@ -187,7 +198,7 @@ class _EntryAndExitPageState extends State<EntryAndExitPage> {
                           style: ButtonStyle(
                             shape: MaterialStatePropertyAll(
                               RoundedRectangleBorder(
-                                side: BorderSide(color: Colors.white),
+                                side: const BorderSide(color: Colors.white),
                                 borderRadius: BorderRadius.circular(16),
                               ),
                             ),
